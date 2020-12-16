@@ -1,38 +1,22 @@
+from math import sqrt
+
 _try = int(input())
 loop = 0
 
 while loop < _try:
     x, y = map(int, input().split())
-    # 최초 앞뒤로 한칸씩 이동
-    start = x+1
-    final = y-1
+    dif = y-x
 
-    count = 2
+    N = int(sqrt(dif))
 
-    move_list = [0, 1, 2]
-    desty_list = list(map(lambda x: x+start, move_list))
-
-    if x-y == 1:
-        print(1)
-    elif x-y == 2:
-        print(2)
+    if N==1:
+        print(dif)
     else:
-        if final in desty_list:
-            print(3)
+        if dif>N*(N+1):
+            print(2*N+1)
+        elif dif>N*N:
+            print(2*N)
         else:
-            count = 3
-            while final not in desty_list:
-                k = max(desty_list) - start
-                start = start + k
-                move_list = [k-1, k, k+1]
-                desty_list = list(map(lambda x: x+start, move_list))
+            print(2*N-1)
     
-                if min(desty_list) >= final:
-                    count+=1
-                    break
-                else:
-                    count+=1
-            
-            print(count)
-
     loop += 1

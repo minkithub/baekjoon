@@ -2,25 +2,16 @@ N = int(input())
 _list = list(map(int, input().split()))
 
 count = 0
-divide_list = [2, 3, 5, 7]
-sub = []
 
-for i in divide_list:
-    sub.append(1)
-
-for i in divide_list:
-    res = list(map(lambda x: x%i, _list))
-    for k in range(len(res)):
-        q = sub[k]*res[k]
-        sub[k] = q
-
-j = len(sub) - sub.count(0)
-    
-for i in divide_list:
-    if i in _list:
+for i in _list:
+    cnt = 0
+    if i==1:
+        continue
+    for j in range(2, i+1):
+        if i%j==0:
+            cnt += 1
+    if cnt == 1:
         count += 1
 
-if 1 in _list:
-    count -= 1
+print(count)
 
-print(count + j)
